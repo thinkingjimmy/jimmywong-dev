@@ -13,7 +13,8 @@ export function SiteHeader() {
           width={40}
           height={40}
           priority
-          className="size-10 rounded-full"
+          unoptimized
+          className="size-10 rounded-full object-cover"
         />
       </Link>
       <Link href="/" className="w-fit transition-opacity hover:opacity-70">

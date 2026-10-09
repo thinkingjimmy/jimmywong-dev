@@ -13,9 +13,9 @@ export function WritingList({ posts }: { posts: PostMeta[] }) {
         <li key={post.slug}>
           <Link
             href={`/writing/${post.slug}`}
-            className="flex items-baseline justify-between gap-6 py-1.5 text-sm leading-6"
+            className="flex items-baseline justify-between gap-6 py-1.5 text-sm leading-6 hover:opacity-70"
           >
-            <span className="link">{post.title}</span>
+            <span className="font-medium">{post.title}</span>
             <time dateTime={post.date} className="shrink-0 text-muted-foreground tabular-nums">
               {formatPostDate(post.date)}
             </time>

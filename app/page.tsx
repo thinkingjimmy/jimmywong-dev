@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SectionDivider, SectionLabel } from "@/components/section-divider";
 import { WritingList } from "@/components/writing-list";
 import { getPosts } from "@/lib/posts";
 import { works } from "@/lib/site";
@@ -24,8 +25,10 @@ export default function HomePage() {
         </p>
       </div>
 
-      <section className="flex flex-col gap-3">
-        <h2 className="text-sm leading-6 font-normal">Work</h2>
+      <SectionDivider />
+
+      <section>
+        <SectionLabel>Work</SectionLabel>
         <ul className="flex flex-col gap-3">
           {works.map((work) => (
             <li key={work.href}>
@@ -33,9 +36,9 @@ export default function HomePage() {
                 href={work.href}
                 target="_blank"
                 rel="noreferrer"
-                className="text-sm leading-6"
+                className="text-sm leading-6 hover:opacity-70"
               >
-                <span className="link">{work.name}</span>
+                <span className="font-medium">{work.name}</span>
                 <span className="text-muted-foreground"> / {work.description}</span>
               </a>
             </li>
@@ -55,10 +58,12 @@ export default function HomePage() {
         <span className="text-muted-foreground"> / @thinkingjimmy</span>
       </p>
 
-      <section className="flex flex-col gap-3">
-        <h2 className="text-sm leading-6 font-normal">Writing</h2>
+      <SectionDivider />
+
+      <section>
+        <SectionLabel>Writing</SectionLabel>
         <WritingList posts={posts} />
-        <Link href="/writing" className="link w-fit text-sm leading-6">
+        <Link href="/writing" className="link mt-3 w-fit text-sm leading-6">
           查看全部 →
         </Link>
       </section>
