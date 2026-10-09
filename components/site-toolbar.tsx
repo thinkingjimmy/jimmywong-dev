@@ -26,7 +26,7 @@ export function SiteToolbar() {
               key={link.href}
               href={link.href}
               aria-current={active ? "page" : undefined}
-              className="hover:opacity-70 data-[current=true]:font-medium"
+              className="cursor-pointer hover:opacity-70 data-[current=true]:font-medium"
               data-current={active ? "true" : undefined}
             >
               {link.label}

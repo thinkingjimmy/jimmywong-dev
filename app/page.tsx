@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import { GitHubGraph } from "@/components/github-graph";
 import { SectionDivider, SectionLabel } from "@/components/section-divider";
 import { WritingList } from "@/components/writing-list";
 import { getPosts } from "@/lib/posts";
@@ -36,10 +38,19 @@ export default function HomePage() {
                 href={work.href}
                 target="_blank"
                 rel="noreferrer"
-                className="text-sm leading-6 hover:opacity-70"
+                className="flex items-start gap-2.5 text-sm leading-6 hover:opacity-70"
               >
-                <span className="font-medium">{work.name}</span>
-                <span className="text-muted-foreground"> / {work.description}</span>
+                <Image
+                  src={work.icon}
+                  alt=""
+                  width={20}
+                  height={20}
+                  className="mt-0.5 size-5 shrink-0 rounded-[5px]"
+                />
+                <span>
+                  <span className="font-medium">{work.name}</span>
+                  <span className="text-muted-foreground"> / {work.description}</span>
+                </span>
               </a>
             </li>
           ))}
@@ -67,6 +78,10 @@ export default function HomePage() {
           查看全部 →
         </Link>
       </section>
+
+      <SectionDivider />
+
+      <GitHubGraph />
     </>
   );
 }
