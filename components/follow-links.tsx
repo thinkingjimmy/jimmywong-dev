@@ -32,25 +32,21 @@ const iconLinkClass =
 
 export function FollowLinks() {
   return (
-    <div className="flex items-center gap-3">
-      <div className="flex items-end text-[#6f6f62] dark:text-[#b7b7aa]">
-        <span className={`${hand.className} text-[26px] leading-none whitespace-nowrap`}>follow me</span>
-        <svg viewBox="0 0 28 26" aria-hidden="true" className="-mb-1 ml-0.5 h-6 w-7 shrink-0">
-          <path
-            d="M1 5c7 1 11 6 15 17"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-          />
-          <path
-            d="M10 16.5 16.5 22.5 9.5 23.5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
+    <div className="relative">
+      <div className="pointer-events-none mb-1 flex w-max flex-col items-end text-xl/none whitespace-nowrap text-[#6f6f62] select-none min-[900px]:absolute min-[900px]:-top-4 min-[900px]:right-full min-[900px]:mr-4 min-[900px]:mb-0 dark:text-[#b7b7aa]">
+        <span className={`${hand.className} -rotate-6 whitespace-nowrap`}>follow me</span>
+        <svg
+          viewBox="0 0 40 40"
+          aria-hidden="true"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="size-7 shrink-0 translate-x-3 -rotate-6 -scale-x-100"
+        >
+          <path d="M34 4c1 15-5 26-21 30" />
+          <path d="m22 37-9-3 7.5-8" />
         </svg>
       </div>
       <div className="flex items-center gap-2">
