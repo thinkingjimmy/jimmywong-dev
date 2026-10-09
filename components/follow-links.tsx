@@ -1,0 +1,80 @@
+import { Caveat } from "next/font/google";
+
+const hand = Caveat({
+  subsets: ["latin"],
+  weight: "500",
+});
+
+function XLogo() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4">
+      <path
+        fill="currentColor"
+        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+      />
+    </svg>
+  );
+}
+
+function GitHubLogo() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="size-4">
+      <path
+        fill="currentColor"
+        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+      />
+    </svg>
+  );
+}
+
+const iconLinkClass =
+  "inline-flex size-8 items-center justify-center rounded-md border border-[#d8d8d0] text-foreground hover:opacity-70 dark:border-[#474739]";
+
+export function FollowLinks() {
+  return (
+    <div className="relative">
+      <div className="pointer-events-none mb-1 flex w-max items-end whitespace-nowrap text-[#6f6f62] min-[760px]:absolute min-[760px]:right-[calc(100%+4px)] min-[760px]:bottom-1 min-[760px]:mb-0 dark:text-[#b7b7aa]">
+        <span className={`${hand.className} -rotate-2 text-[26px] leading-none whitespace-nowrap`}>
+          follow me
+        </span>
+        <svg viewBox="0 0 36 32" aria-hidden="true" className="-mb-1 ml-0.5 h-8 w-8">
+          <path
+            d="M10 6c1 8 3 12 12 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+          />
+          <path
+            d="M16 16c2 3 4 5 7 6M23 15c-1 4-2 6-4 8"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <div className="flex items-center gap-2">
+        <a
+          href="https://x.com/thinkingjimmy"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="X"
+          className={iconLinkClass}
+        >
+          <XLogo />
+        </a>
+        <a
+          href="https://github.com/thinkingjimmy"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub"
+          className={iconLinkClass}
+        >
+          <GitHubLogo />
+        </a>
+      </div>
+    </div>
+  );
+}

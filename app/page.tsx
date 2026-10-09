@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FollowLinks } from "@/components/follow-links";
 import { GitHubGraph } from "@/components/github-graph";
 import { SectionDivider, SectionLabel } from "@/components/section-divider";
 import { WritingList } from "@/components/writing-list";
@@ -26,6 +27,10 @@ export default function HomePage() {
           。这几年 AI 发展迅猛，对 AI 的干预也从简单的 Prompt 进化到了 Harness。市面上也涌现了一大批相关的产品，但我却发现，对于有志于进入此领域的人（特别是非程序员）来说，缺少了一份简单易懂的教程。所以我又撰写了一份与 AI Agent（或者说 AI Coding）相关的教程。希望大家喜欢。
         </p>
       </div>
+
+      <FollowLinks />
+
+      <GitHubGraph />
 
       <SectionDivider />
 
@@ -57,18 +62,6 @@ export default function HomePage() {
         </ul>
       </section>
 
-      <p className="text-sm leading-6">
-        <a
-          className="link"
-          href="https://x.com/thinkingjimmy"
-          target="_blank"
-          rel="noreferrer"
-        >
-          X
-        </a>
-        <span className="text-muted-foreground"> / @thinkingjimmy</span>
-      </p>
-
       <SectionDivider />
 
       <section>
@@ -78,10 +71,6 @@ export default function HomePage() {
           查看全部 →
         </Link>
       </section>
-
-      <SectionDivider />
-
-      <GitHubGraph />
     </>
   );
 }

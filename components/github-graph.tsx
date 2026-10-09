@@ -44,7 +44,7 @@ export async function GitHubGraph() {
               <span
                 key={`${weekIndex}-${dayIndex}`}
                 title={day?.date}
-                className={`aspect-square rounded-[2px] ${LEVELS[day?.level ?? 0]}`}
+                className={`aspect-square rounded-full ${LEVELS[day?.level ?? 0]}`}
                 style={{ gridColumn: weekIndex + 1, gridRow: dayIndex + 1 }}
               />
             );
@@ -68,7 +68,7 @@ export async function GitHubGraph() {
         <p className="flex shrink-0 items-center gap-1">
           Less
           {LEVELS.map((level) => (
-            <span key={level} className={`size-2.5 rounded-[2px] ${level}`} />
+            <span key={level} className={`size-2.5 rounded-full ${level}`} />
           ))}
           More
         </p>
