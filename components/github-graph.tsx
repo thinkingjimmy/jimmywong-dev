@@ -52,7 +52,7 @@ export async function GitHubGraph() {
         )}
       </div>
 
-      <figcaption className="flex flex-col gap-2 text-[11px] leading-4 text-[#7c7c67] sm:flex-row sm:items-start sm:justify-between dark:text-[#abab9c]">
+      <figcaption className="flex items-start justify-between gap-4 text-[11px] leading-4 text-[#7c7c67] dark:text-[#abab9c]">
         <p>
           Fig. 1. {data.total.toLocaleString("en-US")} contributions, {data.from} – {data.to}. Source:{" "}
           <a
