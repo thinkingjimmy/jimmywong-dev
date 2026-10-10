@@ -22,7 +22,7 @@ export default function HomePage() {
       <div className="prose-copy flex flex-col gap-4 text-sm/6">
         <p>一名懂点产品设计，又懂点代码的产品经理。</p>
         <p>
-          你可能没有听说过我，但或许几年前，你又阅读过我写的有关 Prompt Engineering 的
+          你可能没有听说过我，但或许几年前，你有阅读过我写的有关 Prompt Engineering 的
           <a
             className="link"
             href="https://github.com/thinkingjimmy/Learning-Prompt"

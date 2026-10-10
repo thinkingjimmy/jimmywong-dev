@@ -1,6 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/writing/hello-world",
+        destination: "/writing/no-loyalty-to-ai-coding-tools",
+        permanent: true,
+      },
+      {
+        source: "/writing/hello-world.md",
+        destination: "/writing/no-loyalty-to-ai-coding-tools.md",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

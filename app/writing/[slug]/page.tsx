@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Suspense } from "react";
+import { ArticleBody } from "@/components/article-body";
 import { mdxComponents } from "@/components/mdx";
+import { embedTweetLinks } from "@/lib/embed-tweets";
 import { formatPostDate } from "@/lib/format-date";
 import { jsonLdIds } from "@/lib/json-ld";
 import { getPost, getPosts } from "@/lib/posts";
@@ -72,9 +74,9 @@ async function Article(props: PageProps<"/writing/[slug]">) {
       <time dateTime={post.meta.date} className="text-sm leading-6 text-muted-foreground">
         {formatPostDate(post.meta.date)}
       </time>
-      <div className="prose-copy text-sm/6">
-        <MDXRemote source={post.content} components={mdxComponents} />
-      </div>
+      <ArticleBody>
+        <MDXRemote source={embedTweetLinks(post.content)} components={mdxComponents} />
+      </ArticleBody>
     </article>
   );
 }

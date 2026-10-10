@@ -1,4 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
+import { TweetCard } from "@/components/tweet-card";
+import { ZoomableImage } from "@/components/zoomable-image";
 
 function Anchor({ href = "", ...props }: ComponentPropsWithoutRef<"a">) {
   const external = href.startsWith("http");
@@ -55,4 +57,6 @@ export const mdxComponents = {
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
     <strong className="font-medium" {...props} />
   ),
+  img: ZoomableImage,
+  Tweet: TweetCard,
 };
