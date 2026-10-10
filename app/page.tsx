@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FollowLinks } from "@/components/follow-links";
@@ -6,6 +7,12 @@ import { SectionDivider, SectionLabel } from "@/components/section-divider";
 import { WritingList } from "@/components/writing-list";
 import { getPosts } from "@/lib/posts";
 import { works } from "@/lib/site";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function HomePage() {
   const posts = getPosts();
