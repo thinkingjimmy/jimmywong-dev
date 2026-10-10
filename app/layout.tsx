@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Schibsted_Grotesk } from "next/font/google";
+import Script from "next/script";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteJsonLd } from "@/lib/json-ld";
@@ -101,6 +102,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </div>
           </div>
         </ThemeProvider>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${siteInfo.googleAnalyticsId}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${siteInfo.googleAnalyticsId}');`}
+        </Script>
       </body>
     </html>
   );

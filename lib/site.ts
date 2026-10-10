@@ -5,6 +5,7 @@ export const siteInfo = {
   username: "thinkingjimmy",
   x: "https://x.com/thinkingjimmy",
   github: "https://github.com/thinkingjimmy",
+  googleAnalyticsId: "G-V5EJ827DX1",
 } as const;
 
 export const works = [
