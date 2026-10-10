@@ -33,7 +33,7 @@ const iconLinkClass =
 export function FollowLinks() {
   return (
     <div className="relative">
-      <div className="pointer-events-none absolute -top-4 right-full mr-4 hidden w-max flex-col items-end text-xl/none tracking-normal whitespace-nowrap text-[#6f6f62] select-none lg:flex dark:text-[#b7b7aa]">
+      <div className="pointer-events-none absolute -top-10 right-full mr-4 hidden w-max flex-col items-end text-xl/none tracking-normal whitespace-nowrap text-[#6f6f62] select-none lg:flex dark:text-[#b7b7aa]">
         <span className={`${hand.className} -rotate-6`}>follow me</span>
         <svg
           viewBox="0 0 40 40"
