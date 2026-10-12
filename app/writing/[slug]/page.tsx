@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Suspense } from "react";
 import { ArticleBody } from "@/components/article-body";
+import { Authorship } from "@/components/authorship";
 import { mdxComponents } from "@/components/mdx";
 import { embedTweetLinks } from "@/lib/embed-tweets";
 import { formatPostDate } from "@/lib/format-date";
@@ -71,9 +72,16 @@ async function Article(props: PageProps<"/writing/[slug]">) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <h2 className="text-xl leading-7 font-medium">{post.meta.title}</h2>
-      <time dateTime={post.meta.date} className="text-sm leading-6 text-muted-foreground">
-        {formatPostDate(post.meta.date)}
-      </time>
+      <div className="flex items-center gap-3">
+        <time dateTime={post.meta.date} className="shrink-0 text-sm leading-6 text-muted-foreground">
+          {formatPostDate(post.meta.date)}
+        </time>
+        {post.meta.human != null ? (
+          <div className="min-w-0 flex-1">
+            <Authorship human={post.meta.human} />
+          </div>
+        ) : null}
+      </div>
       <ArticleBody>
         <MDXRemote source={embedTweetLinks(post.content)} components={mdxComponents} />
       </ArticleBody>

@@ -7,6 +7,7 @@ export type PostMeta = {
   title: string;
   date: string;
   summary: string;
+  human?: number;
 };
 
 const writingDirectory = path.join(process.cwd(), "content/writing");
@@ -23,6 +24,13 @@ function asDate(value: unknown) {
   return match?.[1] ?? "";
 }
 
+function asHuman(value: unknown) {
+  if (value == null || value === "") return undefined;
+  const share = Math.round(Number(value));
+  if (!Number.isFinite(share)) return undefined;
+  return Math.min(100, Math.max(0, share));
+}
+
 function readPost(slug: string) {
   if (!/^[a-z0-9-]+$/.test(slug)) return null;
 
@@ -36,6 +44,7 @@ function readPost(slug: string) {
     title: String(data.title ?? slug),
     date: asDate(data.date),
     summary: String(data.summary ?? ""),
+    human: asHuman(data.human),
   };
 
   return { meta, content };

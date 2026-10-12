@@ -9,7 +9,6 @@ function messageHeight(data: unknown) {
   if (embed?.method !== "twttr.private.resize") return null;
 
   const first = embed.params?.[0];
-  if (typeof first === "number" && Number.isFinite(first) && first > 0) return first;
   if (!first || typeof first !== "object" || !("height" in first)) return null;
 
   const height = (first as { height?: unknown }).height;
