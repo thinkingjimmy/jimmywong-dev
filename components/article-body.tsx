@@ -31,6 +31,7 @@ export function ArticleBody({ children }: { children: ReactNode }) {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    const container: HTMLDivElement = root;
 
     const frames: HTMLIFrameElement[] = [];
 
@@ -75,7 +76,7 @@ export function ArticleBody({ children }: { children: ReactNode }) {
     }
 
     function scan() {
-      for (const frame of root.querySelectorAll<HTMLIFrameElement>("iframe[data-tweet-id]")) {
+      for (const frame of container.querySelectorAll<HTMLIFrameElement>("iframe[data-tweet-id]")) {
         arm(frame);
       }
     }
@@ -93,7 +94,7 @@ export function ArticleBody({ children }: { children: ReactNode }) {
     scan();
 
     const contentObserver = new MutationObserver(scan);
-    contentObserver.observe(root, { childList: true, subtree: true });
+    contentObserver.observe(container, { childList: true, subtree: true });
 
     const themeObserver = new MutationObserver(syncTheme);
     themeObserver.observe(document.documentElement, {
