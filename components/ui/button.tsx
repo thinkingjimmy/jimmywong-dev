@@ -1,3 +1,9 @@
+/**
+ * [INPUT]: Base UI button behavior, class variance definitions, and class composition.
+ * [OUTPUT]: Button and buttonVariants with shared visual variants and sizes.
+ * [POS]: Shared interface primitive consumed by pane close controls and site actions.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"

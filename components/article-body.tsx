@@ -1,3 +1,9 @@
+/**
+ * [INPUT]: Article children, tweet iframe attributes, embed resize messages, and the active theme.
+ * [OUTPUT]: ArticleBody with tweet loading, sizing, and theme synchronization.
+ * [POS]: Client content lifecycle inside WritingArticle; mounted panes retain their embeds.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";

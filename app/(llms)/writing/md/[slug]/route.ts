@@ -1,3 +1,9 @@
+/**
+ * [INPUT]: Article slugs, post content, and markdownResponse.
+ * [OUTPUT]: GET and generateStaticParams for machine-readable article content.
+ * [POS]: Markdown companion endpoint for the public writing article routes.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 import { markdownResponse } from "@/lib/markdown";
 import { getPost, getPosts } from "@/lib/posts";
 

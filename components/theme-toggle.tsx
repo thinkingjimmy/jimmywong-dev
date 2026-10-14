@@ -1,3 +1,9 @@
+/**
+ * [INPUT]: Theme context, document theme state, and view transition support.
+ * [OUTPUT]: ThemeToggle with an accessible 44px hit area and reduced-motion support.
+ * [POS]: Theme control on the right of SiteHeader's greeting row.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 "use client";
 
 import { Moon, Sun } from "lucide-react";
@@ -70,7 +76,7 @@ export function ThemeToggle() {
           setTheme(next);
         });
       }}
-      className="size-8 text-foreground hover:bg-transparent hover:opacity-70"
+      className="-my-2 -mr-3 size-11 text-foreground transition-opacity hover:bg-transparent hover:opacity-70"
     >
       {isDark ? <Sun /> : <Moon />}
     </Button>

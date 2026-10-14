@@ -1,15 +1,13 @@
+/**
+ * [INPUT]: Async route parameters, post metadata, Suspense, and WritingArticle.
+ * [OUTPUT]: WritingPostPage, generateMetadata, and generateStaticParams.
+ * [POS]: Direct article route; WritingShell handles its viewport and close navigation.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { MDXRemote } from "next-mdx-remote/rsc";
 import { Suspense } from "react";
-import { ArticleBody } from "@/components/article-body";
-import { Authorship } from "@/components/authorship";
-import { mdxComponents } from "@/components/mdx";
-import { embedTweetLinks } from "@/lib/embed-tweets";
-import { formatPostDate } from "@/lib/format-date";
-import { jsonLdIds } from "@/lib/json-ld";
+import { WritingArticle } from "@/components/writing-article";
 import { getPost, getPosts } from "@/lib/posts";
-import { siteInfo } from "@/lib/site";
 
 export function generateStaticParams() {
   return getPosts().map((post) => ({ slug: post.slug }));
@@ -51,40 +49,5 @@ export default function WritingPostPage(props: PageProps<"/writing/[slug]">) {
 
 async function Article(props: PageProps<"/writing/[slug]">) {
   const { slug } = await props.params;
-  const post = getPost(slug);
-  if (!post) notFound();
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.meta.title,
-    description: post.meta.summary,
-    datePublished: post.meta.date,
-    url: `${siteInfo.url}/writing/${post.meta.slug}`,
-    author: { "@id": jsonLdIds.person },
-    inLanguage: "zh-CN",
-  };
-
-  return (
-    <article className="flex flex-col gap-4">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <h2 className="text-xl leading-7 font-medium">{post.meta.title}</h2>
-      <div className="flex items-center gap-3">
-        <time dateTime={post.meta.date} className="shrink-0 text-sm leading-6 text-muted-foreground">
-          {formatPostDate(post.meta.date)}
-        </time>
-        {post.meta.human != null ? (
-          <div className="min-w-0 flex-1">
-            <Authorship human={post.meta.human} />
-          </div>
-        ) : null}
-      </div>
-      <ArticleBody>
-        <MDXRemote source={embedTweetLinks(post.content)} components={mdxComponents} />
-      </ArticleBody>
-    </article>
-  );
+  return <WritingArticle slug={slug} />;
 }

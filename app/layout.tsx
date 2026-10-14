@@ -1,9 +1,19 @@
+/**
+ * [INPUT]: Site metadata, fonts, themes, posts, pre-rendered writing pages, and the parallel pane slot.
+ * [OUTPUT]: RootLayout, metadata, and viewport configuration.
+ * [POS]: Application root; supplies persistent index and article content to ArticleStage.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Schibsted_Grotesk } from "next/font/google";
 import Script from "next/script";
-import { SiteHeader } from "@/components/site-header";
+import { Suspense } from "react";
+import { ArticleStage } from "@/components/article-stage";
+import { WritingArticle } from "@/components/writing-article";
+import { WritingIndex } from "@/components/writing-index";
 import { ThemeProvider } from "@/components/theme-provider";
+import { getPosts } from "@/lib/posts";
 import { siteJsonLd } from "@/lib/json-ld";
 import { siteInfo } from "@/lib/site";
 import "./globals.css";
@@ -82,7 +92,9 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children, pane }: LayoutProps<"/">) {
+  const posts = getPosts();
+
   return (
     <html
       lang="zh-CN"
@@ -95,12 +107,22 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd()) }}
         />
         <ThemeProvider>
-          <div className="flex min-h-screen justify-center py-10">
-            <div className="animate-in fade-in flex w-full max-w-xl flex-col gap-6 px-4 duration-700">
-              <SiteHeader />
-              {children}
-            </div>
-          </div>
+          <ArticleStage
+            pane={pane}
+            panes={[
+              { path: "/writing", content: <WritingIndex posts={posts} /> },
+              ...posts.map((post) => ({
+                path: `/writing/${post.slug}`,
+                content: (
+                  <Suspense key={post.slug} fallback={<div className="min-h-40" />}>
+                    <WritingArticle slug={post.slug} />
+                  </Suspense>
+                ),
+              })),
+            ]}
+          >
+            {children}
+          </ArticleStage>
         </ThemeProvider>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${siteInfo.googleAnalyticsId}`}

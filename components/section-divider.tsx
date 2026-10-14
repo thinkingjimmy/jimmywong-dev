@@ -1,3 +1,9 @@
+/**
+ * [INPUT]: React children for section headings and shared layout utility styles.
+ * [OUTPUT]: SectionDivider and SectionLabel.
+ * [POS]: Shared section decoration and heading primitives for the home page.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 export function SectionDivider() {
   return (
     <div className="flex w-full items-center justify-center gap-2 py-4" aria-hidden="true">

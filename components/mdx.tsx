@@ -1,4 +1,11 @@
+/**
+ * [INPUT]: React element props and shared Note, TweetCard, and ZoomableImage components.
+ * [OUTPUT]: mdxComponents for article typography, links, media, and author notes.
+ * [POS]: Shared MDX render mappings consumed by WritingArticle.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 import type { ComponentPropsWithoutRef } from "react";
+import { Note } from "@/components/note";
 import { TweetCard } from "@/components/tweet-card";
 import { ZoomableImage } from "@/components/zoomable-image";
 
@@ -59,4 +66,5 @@ export const mdxComponents = {
   ),
   img: ZoomableImage,
   Tweet: TweetCard,
+  Note,
 };

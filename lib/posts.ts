@@ -1,3 +1,9 @@
+/**
+ * [INPUT]: MDX files in content/writing and gray-matter frontmatter parsing.
+ * [OUTPUT]: PostMeta, getPosts, and getPost; filenames define article slugs.
+ * [POS]: Shared article metadata and content source for site routes and writing panes.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";

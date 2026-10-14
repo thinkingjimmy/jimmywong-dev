@@ -1,10 +1,15 @@
+/**
+ * [INPUT]: Site metadata, work links, post metadata, and shared writing pane entry points.
+ * [OUTPUT]: HomePage and canonical home metadata.
+ * [POS]: Home content inside SiteLayout; the Writing header opens the full index in a pane.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { FollowLinks } from "@/components/follow-links";
 import { GitHubGraph } from "@/components/github-graph";
 import { SectionDivider, SectionLabel } from "@/components/section-divider";
-import { WritingList } from "@/components/writing-list";
+import { WritingIndexLink, WritingList } from "@/components/writing-list";
 import { getPosts } from "@/lib/posts";
 import { works } from "@/lib/site";
 
@@ -72,11 +77,11 @@ export default function HomePage() {
       <SectionDivider />
 
       <section>
-        <SectionLabel>Writing</SectionLabel>
+        <div className="flex items-baseline justify-between gap-4">
+          <SectionLabel>Writing</SectionLabel>
+          <WritingIndexLink />
+        </div>
         <WritingList posts={posts} />
-        <Link href="/writing" className="link mt-3 w-fit text-sm leading-6">
-          查看全部 →
-        </Link>
       </section>
     </>
   );
