@@ -1,6 +1,6 @@
 /**
  * [INPUT]: Tailwind CSS, shadcn styles, theme tokens, and writing stage state attributes.
- * [OUTPUT]: Global typography, themes, writing layouts, pane/hint motion, and reduced-motion styles.
+ * [OUTPUT]: Global typography, themes, centered home and left-aligned writing layouts, and motion styles.
  * [POS]: Application style entry point; stage layout changes are animated by pane-motion.ts.
  * [PROTOCOL]: Update this header when making changes, then check README.md.
  */
@@ -228,10 +228,14 @@
 
 .writing-stage[data-active="true"] .writing-stage-row {
   height: 100%;
-  justify-content: safe center;
+  justify-content: flex-start;
   overflow-x: auto;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
+}
+
+.writing-stage[data-active="true"][data-count="0"] .writing-stage-row {
+  justify-content: safe center;
 }
 
 .writing-stage-pane {

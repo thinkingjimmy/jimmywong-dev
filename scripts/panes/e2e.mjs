@@ -39,6 +39,17 @@ async function inspect(tab) {
   });
 }
 
+async function waitForLeftEdge(tab, initial) {
+  let state = initial;
+  const deadline = Date.now() + 1500;
+  while (state.rowWidth >= 1152 && Math.abs(state.pageX) >= 1 && Date.now() < deadline) {
+    // Observe the visible slide before asserting its final position.
+    await tab.getScreenshot({ emit: false });
+    state = await inspect(tab);
+  }
+  return state;
+}
+
 async function open(tab, slug, keyboard = false) {
   const link = tab.playwright.locator(`a[href="/writing/${slug}"]`);
   if (keyboard) await link.press("Enter");
@@ -63,9 +74,12 @@ export async function verifyDesktopPanes(tab, { baseUrl = "http://localhost:3000
   assert.equal(evidence.initial.active, "false");
   assert.equal(evidence.initial.hint, "flex");
 
-  evidence.first = await open(tab, LONG);
+  evidence.first = await waitForLeftEdge(tab, await open(tab, LONG));
   assert.equal(evidence.first.panes.length, 1);
   assert.equal(evidence.first.hint, "none");
+  if (evidence.first.rowWidth >= 1152) {
+    assert.ok(Math.abs(evidence.first.pageX) < 1, "The open home column must start at the viewport's left edge.");
+  }
   await tab.playwright.locator(`[role="scrollbar"][aria-controls="article-scroll-${LONG}"]`).press("PageDown");
   evidence.reading = await inspect(tab);
   const scroll = evidence.reading.panes[0].scroll;
@@ -98,6 +112,7 @@ export async function verifyDesktopPanes(tab, { baseUrl = "http://localhost:3000
   evidence.closed = await close(tab, SECOND);
   assert.equal(evidence.closed.active, "false");
   assert.equal(evidence.closed.hint, "flex");
+  assert.ok(Math.abs(evidence.closed.pageX - evidence.initial.pageX) < 1, "Closing all panes must restore the centered home column.");
 
   evidence.keyboard = await open(tab, SECOND, true);
   await tab.playwright.locator(`#writing-article-${SECOND}`).press("Escape");
@@ -233,9 +248,12 @@ export async function verifyWritingIndexPanes(tab, { baseUrl = "http://localhost
   const index = tab.playwright.locator('[data-pane="writing-index"]');
   const indexArticle = () => index.locator(`a[href="/writing/${LONG}"]`);
   await viewAll.click();
-  evidence.index = await inspect(tab);
+  evidence.index = await waitForLeftEdge(tab, await inspect(tab));
   assert.equal(evidence.index.panes.map(({ slug }) => slug).join("|"), "writing-index");
   assert.equal(evidence.index.hint, "none");
+  if (evidence.index.rowWidth >= 1152) {
+    assert.ok(Math.abs(evidence.index.pageX) < 1, "Opening the index must align the home column to the left edge.");
+  }
   assert.equal(await tab.url(), `${baseUrl}/writing`);
   assert.equal(await index.getAttribute("aria-label"), "文章列表");
   assert.equal(await index.getByRole("heading", { name: "Writing", exact: true }).count(), 1);

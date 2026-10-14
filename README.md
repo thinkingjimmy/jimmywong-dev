@@ -19,7 +19,7 @@ next.config.ts - Next.js configuration.
 tsconfig.json - TypeScript settings and import aliases.
 </config>
 
-The home column, full writing index, and article panes share one horizontal scroller. The home Writing section opens the full index as a pane. Panes keep their mounted content and scroll position. Layout changes use transform/opacity motion, with immediate keyboard and reduced-motion paths. The decorative social hint hides while writing panes are open.
+The home column, full writing index, and article panes share one horizontal scroller. The home Writing section opens the full index as a pane. Opening a writing pane aligns the row to the viewport's left edge; closing all panes centers the primary column. Panes keep their mounted content and scroll position. Layout changes use transform/opacity motion, with immediate keyboard and reduced-motion paths. The decorative social hint hides while writing panes are open.
 
 The header places the theme toggle beside the greeting and keeps the avatar and greeting linked to home.
 

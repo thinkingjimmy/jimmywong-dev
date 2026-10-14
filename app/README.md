@@ -2,7 +2,7 @@
 
 > L2 | Parent: ../README.md
 
-globals.css: Theme tokens, base styles, persistent writing stage layout, pane transitions, and decorative hint entry motion.
+globals.css: Theme tokens, base styles, a left-aligned open writing stage with centered standalone home content, pane transitions, and decorative hint entry motion.
 layout.tsx: Root metadata, fonts, themes, and pre-rendered article stage.
 not-found.tsx: Root missing-page fallback.
 robots.ts: Crawler policy.
