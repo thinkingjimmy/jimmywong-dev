@@ -1,6 +1,6 @@
 /**
- * [INPUT]: Caveat font, public social profile URLs, and global hint entry transitions.
- * [OUTPUT]: FollowLinks with social icons and an animated text/arrow hint.
+ * [INPUT]: Caveat font, X/GitHub/Bilibili/Xiaohongshu profile URLs, and global hint entry transitions.
+ * [OUTPUT]: FollowLinks with three square icon links, a content-sized text link, and an animated text/arrow hint.
  * [POS]: Home column social links; ArticleStage hides the hint when article columns are open.
  * [PROTOCOL]: Update this header when making changes, then check README.md.
  */
@@ -33,8 +33,29 @@ function GitHubLogo() {
   );
 }
 
-const iconLinkClass =
-  "inline-flex size-8 items-center justify-center rounded-md border border-[#d8d8d0] text-foreground hover:opacity-70 dark:border-[#474739]";
+function BilibiliLogo() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="size-4"
+    >
+      <path d="m7 3 3 4m7-4-3 4" />
+      <rect x="3" y="7" width="18" height="14" rx="3" />
+      <path d="M8 12v3m8-3v3m-6 3h4" />
+    </svg>
+  );
+}
+
+const socialLinkClass =
+  "inline-flex h-8 items-center justify-center rounded-md border border-[#d8d8d0] text-foreground hover:opacity-70 dark:border-[#474739]";
+
+const iconLinkClass = `${socialLinkClass} w-8`;
 
 export function FollowLinks() {
   return (
@@ -73,6 +94,26 @@ export function FollowLinks() {
           className={iconLinkClass}
         >
           <GitHubLogo />
+        </a>
+        <a
+          href="https://space.bilibili.com/1409205119"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Bilibili"
+          className={iconLinkClass}
+        >
+          <BilibiliLogo />
+        </a>
+        <a
+          href="https://www.xiaohongshu.com/user/profile/6073d38d00000000010068a6"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="小红书"
+          className={`${socialLinkClass} px-2`}
+        >
+          <span aria-hidden="true" className="text-[9px] leading-none font-bold whitespace-nowrap">
+            小红书
+          </span>
         </a>
       </div>
     </div>

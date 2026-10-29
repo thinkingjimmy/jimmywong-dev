@@ -6,7 +6,7 @@ article-body.tsx: Client article content and tweet embed lifecycle.
 article-pane.tsx: Labeled writing viewport, close controls, focus, and standalone transitions.
 article-stage.tsx: Route-keyed index/article stack, history, layout motion, and horizontal scrolling across every column; exposes useWritingStack and writingLinkClick.
 authorship.tsx: Human and AI authorship indicator.
-follow-links.tsx: Social links and a text/arrow hint with a shared 220ms entry transition; hides when article columns are open.
+follow-links.tsx: Square X, GitHub, and Bilibili icon links, a content-sized Xiaohongshu text link, and a text/arrow hint with a shared 220ms entry transition; hides when article columns are open.
 github-graph.tsx: Contribution graph and source caption.
 mdx.tsx: MDX component mappings.
 note.tsx: Author commentary block with the Jimmy label; supports paragraphs, lists, and embeds.
