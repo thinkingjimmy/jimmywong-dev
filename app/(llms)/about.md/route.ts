@@ -1,3 +1,9 @@
+/**
+ * [INPUT]: Site profile data, Chinese project descriptions, and the Markdown response helper.
+ * [OUTPUT]: GET for the machine-readable Chinese profile and project list.
+ * [POS]: About endpoint in the machine-readable route group; shares home project data.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 import { markdownResponse } from "@/lib/markdown";
 import { siteInfo, works } from "@/lib/site";
 
@@ -12,7 +18,7 @@ ${siteInfo.description}
 
 ## Work
 
-${works.map((work) => `- [${work.name}](${work.href}): ${work.description}`).join("\n")}
+${works.map((work) => `- [${work.name}](${work.href}): ${work.description.zh}`).join("\n")}
 
 ## Social
 

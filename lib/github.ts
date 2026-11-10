@@ -1,3 +1,9 @@
+/**
+ * [INPUT]: Public GitHub contribution HTML for the site profile.
+ * [OUTPUT]: Contribution types, parseContributions, and cached getContributions.
+ * [POS]: Contribution data source consumed by components/github-graph.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 const PROFILE = "thinkingjimmy";
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 

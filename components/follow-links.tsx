@@ -1,10 +1,11 @@
 /**
- * [INPUT]: Caveat font, X/GitHub/Bilibili/Xiaohongshu profile URLs, and global hint entry transitions.
- * [OUTPUT]: FollowLinks with three square icon links, a content-sized text link, and an animated text/arrow hint.
+ * [INPUT]: Home locale, Caveat font, social profile URLs, and global hint entry transitions.
+ * [OUTPUT]: FollowLinks with localized social labels, three icon links, a text link, and an animated hint.
  * [POS]: Home column social links; ArticleStage hides the hint when article columns are open.
  * [PROTOCOL]: Update this header when making changes, then check README.md.
  */
 import { Caveat } from "next/font/google";
+import { homeCopy, type Locale } from "@/lib/i18n/home";
 
 const hand = Caveat({
   subsets: ["latin"],
@@ -57,7 +58,9 @@ const socialLinkClass =
 
 const iconLinkClass = `${socialLinkClass} w-8`;
 
-export function FollowLinks() {
+export function FollowLinks({ locale = "zh" }: { locale?: Locale }) {
+  const copy = homeCopy[locale];
+
   return (
     <div className="relative">
       <div data-follow-hint aria-hidden="true" className="pointer-events-none absolute -top-10 right-full mr-4 hidden w-max flex-col items-end text-xl/none tracking-normal whitespace-nowrap text-[#6f6f62] select-none min-[860px]:flex dark:text-[#b7b7aa]">
@@ -108,11 +111,11 @@ export function FollowLinks() {
           href="https://www.xiaohongshu.com/user/profile/6073d38d00000000010068a6"
           target="_blank"
           rel="noreferrer"
-          aria-label="小红书"
+          aria-label={copy.xiaohongshu}
           className={`${socialLinkClass} px-2`}
         >
           <span aria-hidden="true" className="text-[9px] leading-none font-bold whitespace-nowrap">
-            小红书
+            {copy.xiaohongshu}
           </span>
         </a>
       </div>

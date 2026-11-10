@@ -1,3 +1,9 @@
+/**
+ * [INPUT]: Cached contribution dates, totals, months, and weekly activity from lib/github.
+ * [OUTPUT]: GitHubGraph with the contribution grid, source caption, and intensity legend.
+ * [POS]: Shared contribution figure on both home languages; omitted when data is unavailable.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 import { getContributions } from "@/lib/github";
 
 const LEVELS = [

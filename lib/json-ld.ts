@@ -1,3 +1,9 @@
+/**
+ * [INPUT]: Shared site profile metadata and supported home languages.
+ * [OUTPUT]: jsonLdIds and siteJsonLd for website/person structured data.
+ * [POS]: Shared entity identifiers and schema used by the root layout and writing routes.
+ * [PROTOCOL]: Update this header when making changes, then check README.md.
+ */
 import { siteInfo } from "@/lib/site";
 
 export const jsonLdIds = {
@@ -15,7 +21,7 @@ export function siteJsonLd() {
         name: siteInfo.name,
         url: siteInfo.url,
         description: siteInfo.description,
-        inLanguage: "zh-CN",
+        inLanguage: ["zh-CN", "en"],
         author: { "@id": jsonLdIds.person },
       },
       {

@@ -6,9 +6,9 @@ globals.css: Theme tokens, base styles, a left-aligned open writing stage with c
 layout.tsx: Root metadata, fonts, themes, and pre-rendered article stage.
 not-found.tsx: Root missing-page fallback.
 robots.ts: Crawler policy.
-sitemap.ts: Public route sitemap.
+sitemap.ts: Public route sitemap with Chinese and English home language alternates.
 icon.png: Application icon.
-(site)/: Home route and site layout.
+(site)/: Chinese/English home routes and shared site layout.
 writing/: Writing index and direct article routes.
 @pane/: Intercepted article slot.
 (llms)/: Machine-readable site and article endpoints.

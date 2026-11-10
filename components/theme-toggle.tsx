@@ -1,7 +1,7 @@
 /**
- * [INPUT]: Theme context, document theme state, and view transition support.
- * [OUTPUT]: ThemeToggle with an accessible 44px hit area and reduced-motion support.
- * [POS]: Theme control on the right of SiteHeader's greeting row.
+ * [INPUT]: Home locale, theme context, document theme state, and view transition support.
+ * [OUTPUT]: ThemeToggle with localized labels, a 44px hit area, and reduced-motion support.
+ * [POS]: Theme control beside LanguageToggle in SiteHeader's greeting row.
  * [PROTOCOL]: Update this header when making changes, then check README.md.
  */
 "use client";
@@ -10,6 +10,7 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
 import { Button } from "@/components/ui/button";
+import { homeCopy, type Locale } from "@/lib/i18n/home";
 
 function subscribe(onStoreChange: () => void) {
   const observer = new MutationObserver(onStoreChange);
@@ -59,7 +60,8 @@ function toggleWithCircle(event: React.MouseEvent<HTMLButtonElement>, apply: () 
   });
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ locale = "zh" }: { locale?: Locale }) {
+  const copy = homeCopy[locale];
   const { setTheme } = useTheme();
   const isDark = useSyncExternalStore(subscribe, isDarkClass, () => false);
 
@@ -68,7 +70,7 @@ export function ThemeToggle() {
       type="button"
       variant="ghost"
       size="icon"
-      aria-label={isDark ? "切换到浅色" : "切换到深色"}
+      aria-label={isDark ? copy.lightTheme : copy.darkTheme}
       onClick={(event) => {
         const next = isDark ? "light" : "dark";
         toggleWithCircle(event, () => {
@@ -76,7 +78,7 @@ export function ThemeToggle() {
           setTheme(next);
         });
       }}
-      className="-my-2 -mr-3 size-11 text-foreground transition-opacity hover:bg-transparent hover:opacity-70"
+      className="size-11 touch-manipulation text-foreground transition-opacity hover:bg-transparent hover:opacity-70"
     >
       {isDark ? <Sun /> : <Moon />}
     </Button>
